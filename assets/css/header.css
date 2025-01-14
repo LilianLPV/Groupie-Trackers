@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Futura', sans-serif;
+}
+
+
+
+
+nav {
+    background-color: #b94c4c;
+    width: 100%;
+    display: flex;
+
+}
+
+.Electabuzz {
+    justify-content: space-around;
+    top: 0px;
+    height: auto;
+    width: 70px;
+    cursor: pointer;
+}
+
+.Filtre {
+    justify-content: space-around;
+    top: 20px;
+    left: 1650px;
+    position: absolute;
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+}
+
+.Pokédex {
+    justify-content: space-around;
+    top: 20px;
+    left: 1800px;
+    position: absolute;
+    width: 70px;
+    height: auto;
+    cursor: pointer;
+}
+
+nav ul {
+    list-style: none;
+}
+
+.search input {
+    position: absolute;
+    width: 300px;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    padding-left: 10px;
+    margin-top: 22px;
+    margin-left: 750px;
+}
+
+.search button {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #b94c4c;
+    margin-top: 10px;
+    margin-left: 700px;
+    cursor: pointer;
+}
+
+.recherche {
+    width: 40px;
+    height: auto;
+    margin-top: 8px;
+
+}

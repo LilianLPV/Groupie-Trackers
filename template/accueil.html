@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/accueil.css">
+    <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/static/favicons/site.webmanifest" />
+    
+    <title>Home - Pokémon TCG API </title>
+    {{template "header"}}
+</head>
+<body>
+    <div id="api-data">
+        <div class="carrousel">
+            <button class="btn" id="prev"><img src="/static/images/Flèche Gauche.png" alt="fleche gauche"></button>
+            <button class="btn" id="next"><img src="/static/images/Flèche Droite.png" alt="fleche droite"></button>
+            <ul>
+                <li class="slide">
+                    {{range .}}
+                    <img src="{{.Images.Small}}" alt="image"></img>
+                    {{end}}
+                </li>
+            </ul>
+           </div>
+        {{range .}}
+
+    {{end}}
+    </div>
+</body>
+</html>

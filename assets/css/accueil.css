@@ -1,0 +1,46 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-image: url("http://localhost:8080/static/images/Fond.png");
+    min-height: 100vh;
+    height: auto;
+    width: 100vw;
+}
+
+.carrousel button {
+    position: absolute;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 2.6rem;
+    z-index: 2;
+    cursor: pointer;
+    color: rgb(243, 241, 241);
+    transform: translateY(-50%);
+    top: 50%;
+}
+#prev {
+    left: 600px;
+}
+
+#next {
+    right: 600px;
+}
+
+.slide {
+    position: absolute;
+    height: 100%;
+}
+
+/*.carrousel li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px 50px;
+    margin-top: 25px;
+    justify-content: center;
+    list-style: none;
+}

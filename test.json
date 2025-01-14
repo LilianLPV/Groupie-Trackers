@@ -1,0 +1,83 @@
+{
+    "id": "dp3-1",
+    "name": "Ampharos",
+    "supertype": "Pokémon",
+    "subtypes": [
+        "Stage 2"
+    ],
+    "level": "52",
+    "hp": "130",
+    "types": [
+        "Lightning"
+    ],
+    "evolvesFrom": "Flaaffy",
+    "abilities": [
+        {
+            "name": "Jamming",
+            "text": "After your opponent plays a Supporter card from his or her hand, put 1 damage counter on each of your opponent's Pokémon. You can't use more than 1 Jamming Poké-Body each turn.",
+            "type": "Poké-Body"
+        }
+    ],
+    "attacks": [
+        {
+            "name": "Cluster Bolt",
+            "cost": [
+                "Lightning",
+                "Colorless",
+                "Colorless"
+            ],
+            "convertedEnergyCost": 3,
+            "damage": "70",
+            "text": "You may discard all Lightning Energy attached to Ampharos. If you do, this attack does 20 damage to each of your opponent's Benched Pokémon that has any Energy cards attached to it. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+        }
+    ],
+    "weaknesses": [
+        {
+            "type": "Fighting",
+            "value": "+30"
+        }
+    ],
+    "resistances": [
+        {
+            "type": "Metal",
+            "value": "-20"
+        }
+    ],
+    "retreatCost": [
+        "Colorless",
+        "Colorless",
+        "Colorless"
+    ],
+    "convertedRetreatCost": 3,
+    "set": {
+        "id": "dp3",
+        "name": "Secret Wonders",
+        "series": "Diamond & Pearl",
+        "printedTotal": 132,
+        "total": 132,
+        "legalities": {
+            "unlimited": "Legal"
+        },
+        "ptcgoCode": "SW",
+        "releaseDate": "2007/11/01",
+        "updatedAt": "2018/03/04 10:35:00",
+        "images": {
+            "symbol": "https://images.pokemontcg.io/dp3/symbol.png",
+            "logo": "https://images.pokemontcg.io/dp3/logo.png"
+        }
+    },
+    "number": "1",
+    "artist": "Kouki Saitou",
+    "rarity": "Rare Holo",
+    "flavorText": "The tip of its tail shines brightly. In the olden days, people sent signals using the tail's light.",
+    "nationalPokedexNumbers": [
+        181
+    ],
+    "legalities": {
+        "unlimited": "Legal"
+    },
+    "images": {
+        "small": "https://images.pokemontcg.io/dp3/1.png",
+        "large": "https://images.pokemontcg.io/dp3/1_hires.png"
+    }
+}
