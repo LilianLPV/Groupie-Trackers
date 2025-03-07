@@ -1,32 +1,111 @@
 {{define "header"}}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
     <link rel="stylesheet" href="/static/css/header.css">
 </head>
+
 <body>
-    <header class="main-header">
+    <header class="main-header" id="header">
         <nav>
-        <ul>
-            <li ><a href="header.html"><img src="/static/images/Electabuzz.png" class="Electabuzz" alt="Electabuzz"></a></li>
-            <li><a href="filtre.html"><img src="/static/images/Filtre.png" class="Filtre" alt="Filtre"></a></li>
-            <li><a href="favoris.html"><img src="/static/images/Pokédex.png" class="Pokédex" alt="Pokédex"></a></li>
-    </ul>
-    <div class="search">
-        <form>
-            <input type="text" placeholder="Search...">
-            <button class="bouton" type="submit">
-                    <img src="/static/images/Recherche-removebg-preview.png" class="recherche" alt="bouton">
-            </button>
-        </form>
+            <a href="/">
+                <img src="/static/images/Electabuzz.png" class="Electabuzz" alt="Electabuzz">
+            </a>
+            <form action="/recherche" method="GET">
+                <div class="search">
+                    <button type="submitt"><img class="icon"
+                            src="/static/images/Recherche-removebg-preview.png"></button>
+                    <label class="search-icon" for="search"></label>
+                    <input class="input" id="search" type="search" name="search" placeholder="Search..."><img
+                        src="/static/images/Filtre.png" class="Filtre" id="Filtre" alt="Filtre">
+                    <div class="filtrecache">
+                        <label for="typefiltre">Type</label>
+                        <select name="type" id="typefiltre">
+                            <option value="type">Type</option>
+                            <option value="Colorless">Colorless</option>
+                            <option value="Darkness">Darkness</option>
+                            <option value="Dragon">Dragon</option>
+                            <option value="Fairy">Fairy</option>
+                            <option value="Fighting">Fighting</option>
+                            <option value="Fire">Fire</option>
+                            <option value="Grass">Grass</option>
+                            <option value="Lightning">Lightning</option>
+                            <option value="Metal">Metal</option>
+                            <option value="Psychic">Psychic</option>
+                            <option value="Water">Water</option>
+                        </select>
+                        <label for="testtt">SuperTypes</label>
+                        <select name="supertypes" id="testtt">
+                            <option value="supertype">Supertype</option>
+                            <option value="Energy">Energy</option>
+                            <option value="Pokémon">Pokémon</option>
+                            <option value="Trainer">Trainer</option>
+                        </select>
+                        <label for="abcs">SubTypes</label>
+                        <select name="subtypes" id="abcs">
+                            <option value="subtype">Subtype</option>
+                            <option value="ACE SPEC">ACE SPEC</option>
+                            <option value="Ancient">Ancient</option>
+                            <option value="BREAK">BREAK</option>
+                            <option value="Baby">Baby</option>
+                            <option value="Basic">Basic</option>
+                            <option value="EX">EX</option>
+                            <option value="Eternamax">Eternamax</option>
+                            <option value="Fusion Strike">Fusion Strike</option>
+                            <option value="Future">Future</option>
+                            <option value="GX">GX</option>
+                            <option value="Goldenrod Game Corner">Goldenrod Game Corner</option>
+                            <option value="Item">Item</option>
+                            <option value="LEGEND">LEGEND</option>
+                            <option value="Level Up">Level Up</option>
+                            <option value="MEGA">MEGA</option>
+                            <option value="Pokémon Tool">Pokémon Tool</option>
+                            <option value="Pokémon Tool F">Pokémon Tool F</option>
+                            <option value="Prime">Prime</option>
+                            <option value="Prism Star">Prism Star</option>
+                            <option value="Radiant">Radiant</option>
+                            <option value="Rapid Strike">Rapid Strike</option>
+                            <option value="Restored">Restored</option>
+                            <option value="Rocket's Secret Machine">Rocket's Secret Machine</option>
+                            <option value="SP">SP</option>
+                            <option value="Single Strike">Single Strike</option>
+                            <option value="Special">Special</option>
+                            <option value="Stadium">Stadium</option>
+                            <option value="Stage 1">Stage 1</option>
+                            <option value="Stage 2">Stage 2</option>
+                            <option value="Star">Star</option>
+                            <option value="Supporter">Supporter</option>
+                            <option value="TAG TEAM">TAG TEAM</option>
+                            <option value="Team Plasma">Team Plasma</option>
+                            <option value="Technical Machine">Technical Machine</option>
+                            <option value="Tera">Tera</option>
+                            <option value="Ultra Beast">Ultra Beast</option>
+                            <option value="V">V</option>
+                            <option value="V-UNION">V-UNION</option>
+                            <option value="VMAX">VMAX</option>
+                            <option value="VSTAR">VSTAR</option>
+                            <option value="ex">ex</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="block1">
+                <a href="filtre.html">
 
-    </div>
-    </nav>
+                </a>
+                <a href="favoris.html">
+                    <img src="/static/images/Pokédex.png" class="Pokédex" alt="Pokédex">
+                </a>
+            </div>
+        </nav>
     </header>
+    <script src="/static/js/filtre.js"></script>
 </body>
-</html>
-{{end}}
 
+</html>
+
+{{end}}

@@ -1,77 +1,66 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Futura', sans-serif;
 }
-
-
 
 
 nav {
     background-color: #b94c4c;
     width: 100%;
     display: flex;
-
+    align-items: center;
+    justify-content: space-between;
 }
 
 .Electabuzz {
-    justify-content: space-around;
-    top: 0px;
     height: auto;
-    width: 70px;
+    width: 90px;
     cursor: pointer;
 }
 
 .Filtre {
-    justify-content: space-around;
-    top: 20px;
-    left: 1650px;
-    position: absolute;
-    width: 40px;
     height: auto;
+    width: 30px;
     cursor: pointer;
 }
+
 
 .Pokédex {
-    justify-content: space-around;
-    top: 20px;
-    left: 1800px;
-    position: absolute;
-    width: 70px;
     height: auto;
+    width: 100px;
     cursor: pointer;
 }
 
-nav ul {
-    list-style: none;
+.search>button {
+    background-color: transparent;
+    border: none;
+    color: #b3b3b3;
+    cursor: pointer;
+}
+
+.icon {
+    width: 30px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 28px;
+    background-color: #fff;
+    width: 44vw;
 }
 
 .search input {
-    position: absolute;
-    width: 300px;
-    height: 30px;
-    border-radius: 20px;
     border: none;
-    padding-left: 10px;
-    margin-top: 22px;
-    margin-left: 750px;
+    outline: none;
+    width: 100%;
+    padding: 5px;
+    border-radius: 20px;
+    font-family: 'PokemonSolid', sans-serif;
+
 }
 
-.search button {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    border-radius: 20px;
-    border: none;
-    background-color: #b94c4c;
-    margin-top: 10px;
-    margin-left: 700px;
-    cursor: pointer;
-}
-
-.recherche {
-    width: 40px;
-    height: auto;
-    margin-top: 8px;
-
+.filtrecache {
+    display: none;
 }

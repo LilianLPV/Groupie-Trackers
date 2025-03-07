@@ -1,13 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/static/favicons/site.webmanifest" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/static/css/recherche.css">
+    <title>Search - Pokémon TCG API</title>
 </head>
+
 {{template "header"}}
-<body>
-    
+<div class="content-container">
+    <h1>Résultats de recherche pour "{{.Query}}"</h1>
+
+    <!-- Résultats -->
+    <div class="results">
+        {{if .Results.Data}}
+            <div class="results-summary">
+                <p>Affichage de {{.Results.Count}} résultats sur {{.Results.TotalCount}} trouvés</p>
+            </div>
+            <div class="cards-grid">
+                {{range .Results.Data}}
+                <div class="card">
+                    <img src="{{.Images.Small}}" alt="{{.Name}}">
+                    <h3>{{.Name}}</h3>
+                    <div class="card-info">
+                        {{if .Types}}
+                            <div>
+                                {{range .Types}}
+                                <span class="type-tag">{{.}}</span>
+                                {{end}}
+                            </div>
+                        {{end}}
+                        <div>
+                            <span class="supertype-tag">{{.Supertypes}}</span>
+                        </div>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        {{else}}
+            <div class="no-results">
+                <p>Aucun résultat trouvé pour "{{.Query}}".</p>
+            </div>
+        {{end}}
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        {{if .HasPrevPage}}
+            <a href="?search={{.Query}}&type={{.Types}}&supertypes={{.Supertypes}}&subtypes={{.Subtypes}}&page={{subtract .CurrentPage 1}}">&laquo; Précédent</a>
+        {{else}}
+            <span class="disabled">&laquo; Précédent</span>
+        {{end}}
+        
+        <span>Page {{.CurrentPage}} sur {{.TotalPages}}</span>
+        
+        {{if .HasNextPage}}
+            <a href="?search={{.Query}}&type={{.Types}}&supertypes={{.Supertypes}}&subtypes={{.Subtypes}}&page={{add .CurrentPage 1}}">Suivant &raquo;</a>
+        {{else}}
+            <span class="disabled">Suivant &raquo;</span>
+        {{end}}
+    </div>
+</div>
+{{template "footer"}}
+
 </body>
+
 </html>

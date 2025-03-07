@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'PokemonHollow';
+    src: url(http://localhost:8080/static/font/PokemonHollow.ttf);
+}
+@font-face {
+    font-family: 'PokemonSolid';
+    src: url(http://localhost:8080/static/font/PokemonSolid.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+
+nav {
+    background-color: #b94c4c;
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.lien-en-bas {
+    box-sizing: border-box;
+    padding: 15px;
+    display: grid;
+}
+
+.block2 {
+    box-sizing: border-box;
+    padding: 15px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.about {
+    font-family: 'PokemonSolid', sans-serif;
+    padding: 15px 0;
+    text-decoration: none;
+    color:#fff;
+}   
+
+.api {
+    font-family: 'PokemonSolid', sans-serif;
+    padding: 15px 0;
+    text-decoration: none;
+    color:#fff;
+
+}
+
+.GitHub {
+    height: auto;
+    width: 50px;
+    cursor: pointer;
+}
+
+
+.Linkedin {
+    height: auto;
+    width: 50px;
+    cursor: pointer;
+}
+
+.Information {
+    height: auto;
+    width: 50px;
+    cursor: pointer;
+}
+
+.copyright {
+    font-family: 'PokemonSolid', sans-serif;
+    padding: 15px 0;
+    margin: 0;
+    color:#FFF;
+
+}

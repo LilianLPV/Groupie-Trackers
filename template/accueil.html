@@ -1,35 +1,73 @@
-
+{{define "accueil"}}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/accueil.css">
     <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
     <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
     <link rel="manifest" href="/static/favicons/site.webmanifest" />
-    
-    <title>Home - Pokémon TCG API </title>
-    {{template "header"}}
-</head>
-<body>
-    <div id="api-data">
-        <div class="carrousel">
-            <button class="btn" id="prev"><img src="/static/images/Flèche Gauche.png" alt="fleche gauche"></button>
-            <button class="btn" id="next"><img src="/static/images/Flèche Droite.png" alt="fleche droite"></button>
-            <ul>
-                <li class="slide">
-                    {{range .}}
-                    <img src="{{.Images.Small}}" alt="image"></img>
-                    {{end}}
-                </li>
-            </ul>
-           </div>
-        {{range .}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/static/css/accueil.css">
 
-    {{end}}
+    <title>Home - Pokémon TCG API </title>
+</head>
+
+<body>
+    {{template "header"}}
+    <div class="logo-pokemon">
+        <img src="/static/images/Pokémon.png" class="LOGOOO" alt="logo pokemon">
     </div>
+    <div class="apitest">
+        <img src="/static/images/Florizarre.png" alt="Florizarre" class="florizarre">
+
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                {{range .}}
+                <div class="swiper-slide test"> <img src="{{.Images.Small}}" class="image" alt="image"></img></div>
+                {{end}}
+                ...
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev couleur"></div>
+            <div class="swiper-button-next couleur"></div>
+
+            <!-- If we need scrollbar -->
+
+        </div>
+        <div class="pokemon">
+            <img src="/static/images/Dracaufeu.png" alt="Dracaufeu" class="dracaufeu">
+        </div>
+    </div>
+    {{template "footer"}}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: true,
+
+            // If we need pagination
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+
+        });
+    </script>
 </body>
+
 </html>
+{{end}}

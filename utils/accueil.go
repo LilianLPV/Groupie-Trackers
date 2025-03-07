@@ -8,64 +8,9 @@ import (
 )
 
 type Pokemon struct {
-	Id          string   `json:"id"`
-	Name        string   `json:"name"`
-	Supertype   string   `json:"supertype"`
-	Subtype     []string `json:"subtype"`
-	Level       string   `json:"level"`
-	HP          string   `json:"hp"`
-	Types       []string `json:"types"`
-	EvolvesFrom string   `json:"evolvesFrom"`
-	Abilities   []struct {
-		Name string `json:"name"`
-		Text string `json:"text"`
-		Type string `json:"type"`
-	} `json:"abilities"`
-	Attacks []struct {
-		Name                string   `json:"name"`
-		Cost                []string `json:"cost"`
-		ConvertedEnergyCost int      `json:"convertedEnergyCost"`
-		Damage              string   `json:"damage"`
-		Text                string   `json:"text"`
-	} `json:"attacks"`
-	Weaknesses []struct {
-		Type  string `json:"type"`
-		Value string `json:"value"`
-	} `json:"weaknesses"`
-	Resistances []struct {
-		Type  string `json:"type"`
-		Value string `json:"value"`
-	} `json:"resistances"`
-	RetreatCost          []string `json:"retreatCost"`
-	ConvertedRetreatCost int      `json:"convertedRetreatCost"`
-	Set                  struct {
-		Id           string `json:"id"`
-		Name         string `json:"name"`
-		Series       string `json:"series"`
-		PrintedTotal int    `json:"printedTotal"`
-		Total        int    `json:"total"`
-		Legalities   struct {
-			Unlimited string `json:"unlimited"`
-		} `json:"legalities"`
-		PtcgoCode   string `json:"ptcgoCode"`
-		ReleaseDate string `json:"releaseDate"`
-		UpdatedAt   string `json:"updatedAt"`
-		Images      struct {
-			Symbol string `json:"symbol"`
-			Logo   string `json:"logo"`
-		} `json:"images"`
-	} `json:"set"`
-	Number                 string `json:"number"`
-	Artist                 string `json:"artist"`
-	Rarity                 string `json:"rarity"`
-	FlavorText             string `json:"flavorText"`
-	NationalPokedexNumbers []int  `json:"nationalPokedexNumbers"`
-	Legalities             struct {
-		Unlimited string `json:"unlimited"`
-	} `json:"legalities"`
+
 	Images struct {
 		Small string `json:"small"`
-		Large string `json:"large"`
 	} `json:"images"`
 }
 
