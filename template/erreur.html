@@ -12,13 +12,182 @@
     <link rel="manifest" href="/static/favicons/site.webmanifest" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/static/css/erreur.css">
-    <title>Erreur</title>
+    <title>Erreur {{.StatutCode}}</title>
 </head>
 
 <body>
-    {{.StatutCode}}
-    {{.Message}}
-    <a href="/">Home</a>
+    {{template "header"}}
+    <div class="container">
+        <h1 class="erreurtitre">{{.StatutCode}}</h1>
+        <p class="erreur1">{{.Message}}</p>
+        
+        <div class="game-container">
+            <p class="erreur1">Find your way through the maze to get back to the home page!</p>
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            
+            <div class="instructions">
+                <p class="erreur2">Use the arrow keys to move the blue dot to the green output.</p>
+            </div>
+        </div>
+        
+        <a href="/" class="boutonaccueil">Back to home page</a>
+    </div>
+
+    <script>
+        // Code du jeu de labyrinthe
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Taille de chaque cellule du labyrinthe
+        const cellSize = 40;
+        const gridSize = 10; // 10x10 cellules
+
+        // Position du joueur
+        let playerX = 0;
+        let playerY = 0;
+
+        // Position de la sortie
+        const exitX = 9;
+        const exitY = 9;
+
+        // Définition du labyrinthe (1 = mur, 0 = chemin)
+        const maze = [
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+            [1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 1, 1, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+            [1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ];
+
+        // Fonction pour dessiner le labyrinthe
+        function drawMaze() {
+            for (let y = 0; y < gridSize; y++) {
+                for (let x = 0; x < gridSize; x++) {
+                    if (maze[y][x] === 1) {
+                        ctx.fillStyle = "#333";
+                        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                    }
+                }
+            }
+            
+            // Dessiner la sortie
+            ctx.fillStyle = "#00CC00";
+            ctx.fillRect(exitX * cellSize, exitY * cellSize, cellSize, cellSize);
+        }
+
+        // Fonction pour dessiner le joueur
+        function drawPlayer() {
+            ctx.beginPath();
+            ctx.arc(
+                playerX * cellSize + cellSize/2, 
+                playerY * cellSize + cellSize/2, 
+                cellSize/3, 0, Math.PI * 2
+            );
+            ctx.fillStyle = "#3498db";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        // Fonction principale de rendu du jeu
+        function draw() {
+            // Effacer le canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Dessiner les éléments du jeu
+            drawMaze();
+            drawPlayer();
+            
+            // Vérifier si le joueur a atteint la sortie
+            if (playerX === exitX && playerY === exitY) {
+                // Afficher un message de victoire
+                ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "white";
+                ctx.textAlign = "center";
+                ctx.fillText("Well done!", canvas.width/2, canvas.height/2 - 20);
+                ctx.font = "16px Arial";
+                ctx.fillText("You've found the way out!", canvas.width/2, canvas.height/2 + 20);
+                
+                // Rediriger vers l'accueil après un court délai
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            }
+        }
+
+        // Fonction pour gérer le déplacement du joueur
+        function movePlayer(dx, dy) {
+            const newX = playerX + dx;
+            const newY = playerY + dy;
+            
+            // Vérifier si le mouvement est valide
+            if (
+                newX >= 0 && newX < gridSize && 
+                newY >= 0 && newY < gridSize && 
+                maze[newY][newX] !== 1
+            ) {
+                playerX = newX;
+                playerY = newY;
+            }
+            
+            // Redessiner le jeu
+            draw();
+        }
+
+        // Écouter les événements clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') movePlayer(1, 0);
+            else if (e.key === 'ArrowLeft') movePlayer(-1, 0);
+            else if (e.key === 'ArrowUp') movePlayer(0, -1);
+            else if (e.key === 'ArrowDown') movePlayer(0, 1);
+        });
+
+        // Ajouter support tactile pour mobile
+        let touchStartX, touchStartY;
+
+        canvas.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            e.preventDefault();
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault(); // Empêcher le défilement de la page
+        });
+
+        canvas.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+            
+            // Déterminer la direction du swipe
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                // Swipe horizontal
+                if (diffX > 0) movePlayer(1, 0); // droite
+                else movePlayer(-1, 0); // gauche
+            } else {
+                // Swipe vertical
+                if (diffY > 0) movePlayer(0, 1); // bas
+                else movePlayer(0, -1); // haut
+            }
+            
+            e.preventDefault();
+        });
+
+        // Initialiser le jeu
+        draw();
+    </script>
+
+    {{template "footer"}}
 </body>
 
 </html>
