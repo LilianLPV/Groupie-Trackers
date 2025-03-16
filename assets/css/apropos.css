@@ -5,4 +5,212 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
+/* Style pour le conteneur README */
+.readme-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Titres */
+  .readme-container h1 {
+    color: #e4000f; /* Rouge Pokémon */
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 3px solid #e4000f;
+    padding-bottom: 15px;
+  }
+  
+  .readme-container h2 {
+    color: #3466af; /* Bleu Pokémon */
+    font-size: 1.8rem;
+    margin: 30px 0 15px;
+    position: relative;
+    padding-left: 15px;
+  }
+  
+  .readme-container h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 20px;
+    background-color: #ffcb05; /* Jaune Pokémon */
+    border-radius: 4px;
+  }
+  
+  .readme-container h3 {
+    color: #507DBD;
+    font-size: 1.4rem;
+    margin: 20px 0 10px;
+  }
+  
+  /* Sections */
+  .readme-container section {
+    margin-bottom: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Paragraphes */
+  .readme-container p {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+  }
+  
+  /* Listes */
+  .readme-container ul {
+    padding-left: 25px;
+    margin-bottom: 15px;
+  }
+  
+  .readme-container li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 10px;
+  }
+  
+  .readme-container li::before {
+    content: '•';
+    color: #ffcb05; /* Jaune Pokémon */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+  
+  /* Liens */
+  .readme-container a {
+    color: #3466af;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    border-bottom: 1px dotted #3466af;
+  }
+  
+  .readme-container a:hover {
+    color: #e4000f;
+    border-bottom: 1px solid #e4000f;
+  }
+  
+  /* Code */
+  .readme-container code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    color: #e4000f;
+  }
+  
+  .readme-container pre {
+    background-color: #2d2d2d;
+    border-radius: 6px;
+    padding: 15px;
+    overflow-x: auto;
+    margin: 15px 0;
+  }
+  
+  .readme-container pre code {
+    background: none;
+    color: #f8f8f2;
+    padding: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: block;
+    white-space: pre;
+  }
+  
+  /* Tableau */
+  .readme-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    border-radius: 5px;
+  }
+  
+  .readme-container th {
+    background-color: #3466af;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 15px;
+  }
+  
+  .readme-container td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .readme-container tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  
+  .readme-container tr:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Section FAQ avec effet d'accordéon */
+  .faq h3 {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-left: 3px solid #ffcb05;
+    transition: all 0.3s ease;
+  }
+  
+  .faq h3:hover {
+    background-color: #eaeaea;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .readme-container {
+      padding: 20px;
+    }
+    
+    .readme-container h1 {
+      font-size: 2rem;
+    }
+    
+    .readme-container h2 {
+      font-size: 1.5rem;
+    }
+    
+    .readme-container section {
+      padding: 15px;
+    }
+    
+    .readme-container table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+  
+  /* Animation subtile pour les liens et boutons */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .readme-container a:active {
+    animation: pulse 0.3s ease-in-out;
+  }
+  

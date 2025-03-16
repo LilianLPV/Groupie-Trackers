@@ -4,12 +4,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/static/favicons/site.webmanifest" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/static/css/apropos.css">
     <title>About it - Pokémon TCG API</title>
 </head>
 <body>
     {{template "header"}}
-    <h1>About it</h1>
-    {{template "footer"}}
+    <div class="readme-container">
+        <h1>Groupie-Trackers - API Pokémon TCG</h1>
+    
+        <section class="project-description">
+            <h2>Description du projet</h2>
+            <p>Ce projet est une application qui exploite l'API du <a href="https://pokemontcg.io/" target="_blank">Pokémon Trading Card Game (TCG)</a> pour afficher et organiser des cartes Pokémon. Il permet aux utilisateurs de rechercher des cartes, d'afficher leurs détails et d'explorer différents ensembles de cartes.</p>
+        </section>
+    
+        <section class="features">
+            <h2>Fonctionnalités</h2>
+            <ul>
+                <li>Recherche de cartes par nom, type et rareté</li>
+                <li>Affichage des détails d'une carte (nom, description, image...)</li>
+                <li>Filtrage et tri des cartes selon différents critères</li>
+                <li>Gestion d'une collection personnelle de cartes</li>
+            </ul>
+        </section>
+    
+        <section class="installation">
+            <h2>Installation</h2>
+            <h3>Prérequis</h3>
+            <ul>
+                <li><a href="https://go.dev/" target="_blank">Golang</a> installé sur votre machine</li>
+                <li>Accès à l'API de Pokémon TCG</li>
+            </ul>
+    
+            <h3>Installation et exécution</h3>
+            <pre><code>
+    # Cloner le projet
+    git clone https://github.com/LilianLPV/Groupie-Trackers.git
+    
+    # Installer les dépendances
+    go mod tidy
+    
+    # Lancer le projet
+    go run main.go
+            </code></pre>
+        </section>
+    
+        <section class="routes">
+            <h2>Routes implémentées</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Méthode</th>
+                        <th>Route</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GET</td>
+                        <td><code>/search</code></td>
+                        <td>Récupère la liste des cartes</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><code>/selectid</code></td>
+                        <td>Affiche les détails d'une carte spécifique</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><code>/erreur</code></td>
+                        <td>Affiche les détails de l'erreur</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><code>/favorites</code></td>
+                        <td>Affiche les favoris</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><code>/aboutit</code></td>
+                        <td>Affiche la page à propos avec le README dedans</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    
+        <section class="api">
+            <h2>API Utilisée</h2>
+            <p>Le projet exploite l'API publique <a href="https://pokemontcg.io/" target="_blank">Pokémon TCG</a>, qui propose différents endpoints permettant de récupérer des données sur les cartes et ensembles disponibles.</p>
+        </section>
+    
+        <section class="faq">
+            <h2>FAQ - Gestion du projet</h2>
+    
+            <h3>1. Comment avons-nous décomposé le projet ?</h3>
+            <p>Le projet a été divisé en plusieurs phases :</p>
+            <ul>
+                <li><strong>Phase 1 : Analyse</strong> - Comprendre les besoins et explorer l'API.</li>
+                <li><strong>Phase 2 : Conception</strong> - Définition de l'architecture et des routes.</li>
+                <li><strong>Phase 3 : Développement</strong> - Implémentation des fonctionnalités principales.</li>
+                <li><strong>Phase 4 : Tests et finalisation</strong> - Corrections et optimisations.</li>
+            </ul>
+    
+            <h3>2. Comment j'ai réparti les tâches ?</h3>
+            <p>Nous avons utilisé la méthode Agile avec des tâches définies.</p>
+    
+            <h3>3. Comment avons-nous géré notre temps ?</h3>
+            <p>Nous avons priorisé les tâches critiques (connexion API, affichage des cartes) et avons réparti le travail en sprints hebdomadaires.</p>
+    
+            <h3>4. Quelle stratégie avons-nous adoptée pour nous documenter ?</h3>
+            <p>Nous avons combiné la documentation officielle de l'API avec des recherches sur Golang et les bonnes pratiques en développement web.</p>
+        </section>
+    </div>    {{template "footer"}}
 </body>
 </html>
 {{end}}
