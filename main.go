@@ -11,9 +11,12 @@ import (
 func main() {
 	utils.InitTemplate()
 	http.HandleFunc("/", AccueilHandler)
-	http.HandleFunc("/recherche", RechercheHandler)
+	http.HandleFunc("/search", RechercheHandler)
 	http.HandleFunc("/favorites", FavorisHandler)
+	http.HandleFunc("/favorites/add", FavoritesAdd)
 	http.HandleFunc("/erreur", ErreurHandler)
+	http.HandleFunc("/aboutit", AproposHandler)
+	http.HandleFunc("/selectid", SelectIDHandler)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./assets"))))
 	fmt.Println("Le serveur est lancé http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
@@ -139,24 +142,85 @@ func RechercheHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func FavorisHandler(w http.ResponseWriter, r *http.Request) {
-	accueil, err := utils.Favoris()
-	if err != nil {
-		http.Error(w, fmt.Sprintf("Error fetching accueil: %v", err), http.StatusInternalServerError)
+	// recupe liste id
+	fileData, fileErr := utils.ReadFileFav()
+	if fileErr != nil {
+		http.Redirect(w, r, fmt.Sprintf("/erreur?statutCode=%d&erreur=%s", http.StatusInternalServerError, fileErr.Error()), http.StatusSeeOther)
 		return
 	}
 
-	err = utils.Tpl.ExecuteTemplate(w, "favoris.html", accueil)
+var liste []utils.CardItem
+	for _, id := range fileData { 
+		card, err := utils.Selectid(id)
+		if err != nil {
+			http.Redirect(w, r, fmt.Sprintf("/erreur?statutCode=%d&erreur=%s", http.StatusInternalServerError, err.Error()), http.StatusSeeOther)
+			return
+		}
+		liste = append(liste, card)
+	}
+
+	// bouclé su les la liste des id pour recup les cartes
+	// for _, id := range fileData ???
+	// ajout au tableau liste carte
+
+
+	// envoie de la liste au template, changer nil par la variable ? 
+	err := utils.Tpl.ExecuteTemplate(w, "favoris", nil)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error executing template: %v", err), http.StatusInternalServerError)
 		return
 	}
 }
 
-func FiltreHandler(w http.ResponseWriter, r *http.Request) {
+func AproposHandler(w http.ResponseWriter, r *http.Request) {
+	apropos, err := utils.Apropos()
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error fetching accueil: %v", err), http.StatusInternalServerError)
+		return
+	}
 
-	err := utils.Tpl.ExecuteTemplate(w, "filtre.html", nil)
+	err = utils.Tpl.ExecuteTemplate(w, "apropos", apropos)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error executing template: %v", err), http.StatusInternalServerError)
 		return
 	}
+}
+
+func SelectIDHandler(w http.ResponseWriter, r *http.Request) {
+	id := r.FormValue("id")
+
+	fmt.Println(id)
+
+	idresult, err := utils.Selectid(id)
+	if err != nil {
+		http.Redirect(w, r, fmt.Sprintf("/erreur?statutCode=%d&erreur=%s", http.StatusInternalServerError, err.Error()), http.StatusSeeOther)
+		return
+	}
+
+	err = utils.Tpl.ExecuteTemplate(w, "selectid", idresult)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error executing template: %v", err), http.StatusInternalServerError)
+		return
+	}
+}
+
+func FavoritesAdd(w http.ResponseWriter, r *http.Request) {
+	id := r.FormValue("id")
+
+	fmt.Println(id)
+	res, resErr := utils.ReadFileFav()
+	if resErr != nil {
+		http.Redirect(w, r, fmt.Sprintf("/erreur?statutCode=%d&erreur=%s", http.StatusInternalServerError, resErr.Error()), http.StatusSeeOther)
+		return
+	}
+
+	fmt.Println(res)
+
+	errWrite := utils.AddFav(id)
+	if errWrite != nil {
+		http.Redirect(w, r, fmt.Sprintf("/erreur?statutCode=%d&erreur=%s", http.StatusInternalServerError, errWrite.Error()), http.StatusSeeOther)
+		return
+	}
+
+	http.Redirect(w, r, "/favorites", http.StatusSeeOther)
 }

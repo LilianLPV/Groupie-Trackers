@@ -1,4 +1,4 @@
-{{define "favoris"}}
+{{define "selectid"}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,15 +10,24 @@
     <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
     <link rel="manifest" href="/static/favicons/site.webmanifest" />
-    <link rel="stylesheet" href="/static/css/favoris.css">
+    <link rel="stylesheet" href="/static/css/selectid.css">
 
-    <title>Favorites - Pokémon TCG API</title>
+    <title>SelectID {{.Data.ID}}</title>
 </head>
 
 <body>
     {{template "header"}}
-    <p>{{.}}</p>
+
+    <main class="container">
+        <div class="card">
+          <img src="{{.Data.Images.Small}}" alt="{{.Data.Name}}">
+          <p>{{.Data.Name}}</p>
+          <p>{{.Data.ID}}</p>
+          <p>{{.Data.Types}}</p>
+        </div>
+      </main>
     {{template "footer"}}
+
 </body>
 
 </html>

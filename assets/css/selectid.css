@@ -1,0 +1,45 @@
+/* Réinitialisation générale */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Corps de la page */
+  body {
+    background-image: url("http://localhost:8080/static/images/body_bg.png");
+    background-size: cover; /* Assurez-vous que l'image de fond prend toute la taille */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* La page couvre au moins la hauteur de l'écran */
+  }
+  
+  /* Conteneur principal */
+  main.container {
+    flex: 1; /* Prend tout l'espace entre le header et le footer */
+    display: flex;
+    justify-content: center; /* Centre horizontalement le contenu */
+    align-items: center; /* Centre verticalement le contenu */
+    padding: 20px;
+  }
+  
+  /* Bloc pour le contenu */
+  .card {
+    background-color: #daaa8d;
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre légère */
+    padding: 20px;
+    text-align: center;
+    width: 300px; /* Largeur fixe */
+  }
+  
+  /* Image dans la carte */
+  .card img {
+    width: 100%;
+    border-radius: 8px; /* Coins arrondis pour les images */
+  }
+  

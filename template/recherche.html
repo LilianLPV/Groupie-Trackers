@@ -16,55 +16,61 @@
 
 {{template "header"}}
 <div class="content-container">
-    <h1>Résultats de recherche pour "{{.Query}}"</h1>
+    <h1>Search results for "{{.Query}}"</h1>
 
     <!-- Résultats -->
     <div class="results">
         {{if .Results.Data}}
-            <div class="results-summary">
-                <p>Affichage de {{.Results.Count}} résultats sur {{.Results.TotalCount}} trouvés</p>
-            </div>
-            <div class="cards-grid">
-                {{range .Results.Data}}
-                <div class="card">
+        <div class="results-summary">
+            <p>Showing {{.Results.Count}} results for {{.Results.TotalCount}} found</p>
+        </div>
+        <div class="cards-grid">
+            {{range .Results.Data}}
+            <div class="card">
+                <a href="/selectid?id={{.Id}}">
                     <img src="{{.Images.Small}}" alt="{{.Name}}">
                     <h3>{{.Name}}</h3>
                     <div class="card-info">
                         {{if .Types}}
-                            <div>
-                                {{range .Types}}
-                                <span class="type-tag">{{.}}</span>
-                                {{end}}
-                            </div>
+                        <div>
+                            {{range .Types}}
+                            <span class="type-tag">{{.}}</span>
+                            {{end}}
+                        </div>
                         {{end}}
                         <div>
                             <span class="supertype-tag">{{.Supertypes}}</span>
                         </div>
+                        <a href="/favorites/add?id={{.Id}}">Fav</a>
                     </div>
-                </div>
-                {{end}}
+                </a>
             </div>
+            {{end}}
+        </div>
         {{else}}
-            <div class="no-results">
-                <p>Aucun résultat trouvé pour "{{.Query}}".</p>
-            </div>
+        <div class="no-results">
+            <p>No results found for "{{.Query}}".</p>
+        </div>
         {{end}}
     </div>
 
     <!-- Pagination -->
     <div class="pagination">
         {{if .HasPrevPage}}
-            <a href="?search={{.Query}}&type={{.Types}}&supertypes={{.Supertypes}}&subtypes={{.Subtypes}}&page={{subtract .CurrentPage 1}}">&laquo; Précédent</a>
+        <a
+            href="?search={{.Query}}&type={{.Types}}&supertypes={{.Supertypes}}&subtypes={{.Subtypes}}&page={{subtract .CurrentPage 1}}">&laquo;
+            Previous</a>
         {{else}}
-            <span class="disabled">&laquo; Précédent</span>
+        <span class="disabled">&laquo; Previous</span>
         {{end}}
-        
-        <span>Page {{.CurrentPage}} sur {{.TotalPages}}</span>
-        
+
+        <span>Page {{.CurrentPage}} on {{.TotalPages}}</span>
         {{if .HasNextPage}}
-            <a href="?search={{.Query}}&type={{.Types}}&supertypes={{.Supertypes}}&subtypes={{.Subtypes}}&page={{add .CurrentPage 1}}">Suivant &raquo;</a>
+        <a
+            href="?search={{.Query}}&type={{.Types}}&supertypes={{.Supertypes}}&subtypes={{.Subtypes}}&page={{add .CurrentPage 1}}">Next
+            &raquo;</a>
         {{else}}
-            <span class="disabled">Suivant &raquo;</span>
+        <span class="disabled">Next &raquo;</span>
         {{end}}
     </div>
 </div>

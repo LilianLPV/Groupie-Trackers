@@ -32,7 +32,7 @@ func Recherche(query string, page int, pageSize int) (Requete, int, error) {
 
 	req, err := http.NewRequest("GET", urlApi, nil)
 	if err != nil {
-		return Requete{}, http.StatusInternalServerError, fmt.Errorf("Unable to create your request : %v", err)
+		return Requete{}, http.StatusInternalServerError, fmt.Errorf("Unable to create your request: %v", err)
 	}
 
 	req.Header.Set("X-Api-Key", "38bfad3b-efb1-44bd-9fb3-a2ed677fc716")
@@ -41,7 +41,7 @@ func Recherche(query string, page int, pageSize int) (Requete, int, error) {
 
 	res, err := httpClient.Do(req)
 	if err != nil {
-		return Requete{}, http.StatusInternalServerError, fmt.Errorf("Unable to process your request : %v", err)
+		return Requete{}, http.StatusInternalServerError, fmt.Errorf("Unable to process your request: %v", err)
 	}
 
 	defer res.Body.Close()
@@ -52,7 +52,7 @@ func Recherche(query string, page int, pageSize int) (Requete, int, error) {
 	var pokemonrequete Requete
 	err = json.NewDecoder(res.Body).Decode(&pokemonrequete)
 	if err != nil {
-		return Requete{}, http.StatusInternalServerError, fmt.Errorf("Data reading problems : %v", err)
+		return Requete{}, http.StatusInternalServerError, fmt.Errorf("Data reading problems: %v", err)
 	}
 
 	return pokemonrequete, res.StatusCode, nil
