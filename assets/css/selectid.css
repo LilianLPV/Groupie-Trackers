@@ -7,7 +7,7 @@
   
   /* Corps de la page */
   body {
-    background-image: url("http://localhost:8080/static/images/body_bg.png");
+    background-image: url("http://localhost:8080/static/images/fond.png");
     background-size: cover; /* Assurez-vous que l'image de fond prend toute la taille */
     margin: 0;
     padding: 0;

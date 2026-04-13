@@ -27,22 +27,26 @@
         <div class="cards-grid">
             {{range .Results.Data}}
             <div class="card">
-                <a href="/selectid?id={{.Id}}">
+                <a href="/selectid?id={{.Id}}" class="card-link">
                     <img src="{{.Images.Small}}" alt="{{.Name}}">
                     <h3>{{.Name}}</h3>
-                    <div class="card-info">
-                        {{if .Types}}
-                        <div>
-                            {{range .Types}}
-                            <span class="type-tag">{{.}}</span>
-                            {{end}}
-                        </div>
+                </a>
+
+                <div class="card-info">
+                    {{if .Types}}
+                    <div>
+                        {{range .Types}}
+                        <span class="type-tag">{{.}}</span>
                         {{end}}
-                        <div>
-                            <span class="supertype-tag">{{.Supertypes}}</span>
-                        </div>
-                        <a href="/favorites/add?id={{.Id}}">Fav</a>
                     </div>
+                    {{end}}
+                    <div>
+                        <span class="supertype-tag">{{.Supertypes}}</span>
+                    </div>
+                </div>
+
+                <a href="/favorites/add?id={{.Id}}" class="btn-fav">
+                    Favoris
                 </a>
             </div>
             {{end}}

@@ -47,11 +47,36 @@ func AddFav(newItem string) error {
 		return fileErr
 	}
 
-	// Il faut gerer les doublons...
-	// voir doc package slice !
+	for _, each := range fileData {
+		if each == newItem {
+			return nil // déjà dans les favoris
+		}
+	}
+
 	fileData = append(fileData, newItem)
 
 	fileErr = WriteFileFav(fileData)
+	if fileErr != nil {
+		return fileErr
+	}
+
+	return nil
+}
+
+func RemoveFav(removeItem string) error {
+	fileData, fileErr := ReadFileFav()
+	if fileErr != nil {
+		return fileErr
+	}
+
+	newList := make([]string, 0, len(fileData))
+	for _, each := range fileData {
+		if each != removeItem {
+			newList = append(newList, each)
+		}
+	}
+
+	fileErr = WriteFileFav(newList)
 	if fileErr != nil {
 		return fileErr
 	}

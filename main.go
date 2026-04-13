@@ -14,6 +14,7 @@ func main() {
 	http.HandleFunc("/search", RechercheHandler)
 	http.HandleFunc("/favorites", FavorisHandler)
 	http.HandleFunc("/favorites/add", FavoritesAdd)
+	http.HandleFunc("/favorites/remove", FavoritesRemove)
 	http.HandleFunc("/erreur", ErreurHandler)
 	http.HandleFunc("/aboutit", AproposHandler)
 	http.HandleFunc("/selectid", SelectIDHandler)
@@ -164,8 +165,8 @@ var liste []utils.CardItem
 	// ajout au tableau liste carte
 
 
-	// envoie de la liste au template, changer nil par la variable ? 
-	err := utils.Tpl.ExecuteTemplate(w, "favoris", nil)
+	// envoie de la liste au template
+	err := utils.Tpl.ExecuteTemplate(w, "favoris", liste)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error executing template: %v", err), http.StatusInternalServerError)
 		return
@@ -207,16 +208,23 @@ func SelectIDHandler(w http.ResponseWriter, r *http.Request) {
 func FavoritesAdd(w http.ResponseWriter, r *http.Request) {
 	id := r.FormValue("id")
 
-	fmt.Println(id)
-	res, resErr := utils.ReadFileFav()
-	if resErr != nil {
-		http.Redirect(w, r, fmt.Sprintf("/erreur?statutCode=%d&erreur=%s", http.StatusInternalServerError, resErr.Error()), http.StatusSeeOther)
+	fmt.Println("Add favorite", id)
+
+	errWrite := utils.AddFav(id)
+	if errWrite != nil {
+		http.Redirect(w, r, fmt.Sprintf("/erreur?statutCode=%d&erreur=%s", http.StatusInternalServerError, errWrite.Error()), http.StatusSeeOther)
 		return
 	}
 
-	fmt.Println(res)
+	http.Redirect(w, r, "/favorites", http.StatusSeeOther)
+}
 
-	errWrite := utils.AddFav(id)
+func FavoritesRemove(w http.ResponseWriter, r *http.Request) {
+	id := r.FormValue("id")
+
+	fmt.Println("Remove favorite", id)
+
+	errWrite := utils.RemoveFav(id)
 	if errWrite != nil {
 		http.Redirect(w, r, fmt.Sprintf("/erreur?statutCode=%d&erreur=%s", http.StatusInternalServerError, errWrite.Error()), http.StatusSeeOther)
 		return

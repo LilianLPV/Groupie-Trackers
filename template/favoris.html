@@ -17,7 +17,31 @@
 
 <body>
     {{template "header"}}
-    <p>{{.}}</p>
+    <main class="content-container">
+        <h1>Mes favoris</h1>
+
+        {{if .}}
+        <div class="cards-grid">
+            {{range .}}
+            <div class="card">
+                <a href="/selectid?id={{.Data.ID}}">
+                    <img src="{{.Data.Images.Small}}" alt="{{.Data.Name}}">
+                    <h3>{{.Data.Name}}</h3>
+                </a>
+                <div class="card-actions">
+                    <a class="remove-fav" href="/favorites/remove?id={{.Data.ID}}">Supprimer</a>
+                </div>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <div class="no-results">
+            <p>Vous n’avez pas encore de favoris.</p>
+            <p><a href="/">Retour à l’accueil</a></p>
+        </div>
+        {{end}}
+    </main>
+
     {{template "footer"}}
 </body>
 

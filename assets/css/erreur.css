@@ -1,5 +1,5 @@
 body {
-    background-image: url("http://localhost:8080/static/images/body_bg.png");
+    background-image: url("http://localhost:8080/static/images/fond.png");
     min-height: 100vh;
     height: auto;
     display: flex;
